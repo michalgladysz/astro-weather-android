@@ -217,7 +217,7 @@
                 android:paddingTop="20dp">
 
             <TextView
-                    android:text="Longitude"
+                    android:text="Latitude"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:textAlignment="center"
@@ -226,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_column="0" />
             <TextView
-                    android:id="@+id/longitude"
+                    android:id="@+id/latitudeTv"
                     android:text="51.232523"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
@@ -244,7 +244,7 @@
                 android:paddingTop="10dp">
 
             <TextView
-                    android:text="Latitude"
+                    android:text="Longitude"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:textAlignment="center"
@@ -253,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_column="0" />
             <TextView
-                    android:id="@+id/latitude"
+                    android:id="@+id/longitudeTv"
                     android:text="8.042355"
                     android:textSize="20sp"
                     android:textColor="#ffffff"

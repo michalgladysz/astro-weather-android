@@ -6,19 +6,23 @@
               android:background="@color/colorDay"
               android:orientation="vertical">
 
-    <TextView
-            android:text="SUN"
-            android:textSize="70sp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:textColor="#ffffff"
-            android:textAlignment="center"
-            android:scaleX="0.8"
-            android:scaleY="0.8"
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:drawablePadding="20dp"
-            app:drawableTopCompat="@drawable/ic_sun"/>
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:text="SUN"
+                android:textSize="60sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:textColor="#ffffff"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                app:drawableLeftCompat="@drawable/ic_sun_50"
+                android:drawablePadding="20dp"
+                android:layout_marginVertical="10dp"/>
+    </RelativeLayout>
     <TextClock
             android:text=""
             android:textSize="30sp"
@@ -204,7 +208,7 @@
                 android:paddingTop="20dp">
 
             <TextView
-                    android:text="Longitude"
+                    android:text="Latitude"
                     android:textSize="20sp"
                     android:textColor="@color/colorDayText"
                     android:textAlignment="center"
@@ -213,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:layout_column="0" />
             <TextView
-                    android:id="@+id/longitude"
+                    android:id="@+id/latitudeTv"
                     android:text="51.232523"
                     android:textSize="20sp"
                     android:textColor="@color/colorDayText"
@@ -231,7 +235,7 @@
                 android:paddingTop="10dp">
 
             <TextView
-                    android:text="Latitude"
+                    android:text="Longitude"
                     android:textSize="20sp"
                     android:textColor="@color/colorDayText"
                     android:textAlignment="center"
@@ -240,7 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_column="0" />
             <TextView
-                    android:id="@+id/latitude"
+                    android:id="@+id/longitudeTv"
                     android:text="8.042355"
                     android:textSize="20sp"
                     android:textColor="@color/colorDayText"

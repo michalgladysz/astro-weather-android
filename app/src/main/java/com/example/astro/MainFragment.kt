@@ -1,41 +1,73 @@
 package com.example.astro
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+    private lateinit var setButton : Button
+    private lateinit var spinner : Spinner
+    private lateinit var longitude: EditText
+    private lateinit var latitude: EditText
 
-        val view = inflater.inflate(
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        return inflater.inflate(
             R.layout.main_fragment,
             container, false
         )
-
-      //  populateSpinner(view)
-        return view
     }
-//    fun populateSpinner(view : View) {
-//        val spinner = view.findViewById(R.id.spinner) as Spinner
-//// Create an ArrayAdapter using the string array and a default spinner layout
-//        this.context?.let {
-//            ArrayAdapter.createFromResource(
-//                it,
-//                R.array.refresh_array,
-//                android.R.layout.simple_spinner_item
-//            ).also { adapter ->
-//                // Specify the layout to use when the list of choices appears
-//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//                // Apply the adapter to the spinner
-//                spinner.adapter = adapter
-//            }
-//        }
-//    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setButton = view.findViewById(R.id.button)
+        spinner = view.findViewById(R.id.spinner)
+        longitude = view.findViewById(R.id.editTextNumberLongitude)
+        latitude = view.findViewById(R.id.editTextNumberLatitude)
+
+        setButton.setOnClickListener {
+            saveData()
+            Toast.makeText(activity, "New settings set", Toast.LENGTH_LONG).show()
+            (activity as MainActivity).updateSettings()
+        }
+
+        loadData()
+
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun saveData() {
+        val sharedPreferences = activity?.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE) ?: return
+        with (sharedPreferences.edit()) {
+            val value = Integer.parseInt(spinner.selectedItem.toString())
+            putInt("REFRESH_KEY", value)
+            putInt("SPINNER_POSITION", spinner.selectedItemPosition)
+            putString("LATITUDE_KEY", latitude.text.toString())
+            putString("LONGITUDE_KEY", longitude.text.toString())
+            apply()
+        }
+    }
+
+    private fun loadData() {
+        val sharedPreferences = activity!!.applicationContext.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
+        val spinnerPosition = sharedPreferences?.getInt("SPINNER_POSITION", 0)
+        val latitudeText = sharedPreferences?.getString("LATITUDE_KEY", "51")
+        val longitudeText = sharedPreferences?.getString("LONGITUDE_KEY", "13")
+
+        if (spinnerPosition != null) {
+            spinner.setSelection(spinnerPosition)
+        }
+        longitude.setText(longitudeText)
+        latitude.setText(latitudeText)
+    }
+
+
+
 }

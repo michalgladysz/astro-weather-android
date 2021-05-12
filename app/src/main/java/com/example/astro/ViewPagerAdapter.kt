@@ -7,15 +7,22 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+
+    private val fragmentList : ArrayList<Fragment> = ArrayList()
+
     override fun getItemCount(): Int {
         return 3;
     }
 
+    fun addFragment(fragment : Fragment) {
+        fragmentList.add(fragment)
+    }
+
     override fun createFragment(position: Int): Fragment {
-        return when(position) {
-            0 -> MainFragment()
-            1 -> SunFragment()
-            else -> NightFragment()
-        }
+        return fragmentList[position]
+    }
+
+    fun getFragment(position : Int) : Fragment {
+        return fragmentList[position]
     }
 }

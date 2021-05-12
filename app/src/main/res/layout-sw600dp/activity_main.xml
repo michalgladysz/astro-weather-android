@@ -7,13 +7,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
-
     <fragment
             android:layout_width="match_parent"
-            android:layout_height="0dp" android:name="com.example.astro.SunFragment" android:id="@+id/fragment"
+            android:layout_height="0dp"
+            android:name="com.example.astro.MainFragment"
+            android:id="@+id/fragment0"
+            android:layout_weight="0.45"/>
+    <fragment
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:name="com.example.astro.SunFragment"
+            android:id="@+id/fragment1"
             android:layout_weight="1"/>
     <fragment
             android:layout_width="match_parent"
-            android:layout_height="0dp" android:name="com.example.astro.NightFragment"
-            android:id="@+id/fragment2" android:layout_weight="1"/>
+            android:layout_height="0dp"
+            android:name="com.example.astro.NightFragment"
+            android:id="@+id/fragment2"
+            android:layout_weight="1"/>
 </LinearLayout>

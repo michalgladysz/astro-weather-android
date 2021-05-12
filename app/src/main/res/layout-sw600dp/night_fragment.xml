@@ -6,19 +6,24 @@
               android:background="@color/colorNight"
               android:orientation="vertical">
 
-    <TextView
-            android:text="MOON"
-            android:textSize="70sp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:textColor="@color/Yellow"
-            android:textAlignment="center"
-            android:scaleX="0.8"
-            android:scaleY="0.8"
+
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:drawablePadding="20dp"
-            app:drawableTopCompat="@drawable/ic_moon_100"/>
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:text="MOON"
+                android:textSize="60sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:textColor="@color/Yellow"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                app:drawableLeftCompat="@drawable/ic_moon_50"
+                android:drawablePadding="20dp"
+                android:layout_marginVertical="10dp"/>
+    </RelativeLayout>
     <TextClock
             android:text=""
             android:textSize="30sp"
@@ -214,33 +219,6 @@
                 android:paddingTop="10dp">
 
             <TextView
-                    android:text="Longitude"
-                    android:textSize="20sp"
-                    android:textColor="#ffffff"
-                    android:textAlignment="center"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0" />
-            <TextView
-                    android:id="@+id/longitude"
-                    android:text="51.232523"
-                    android:textSize="20sp"
-                    android:textColor="#ffffff"
-                    android:textAlignment="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1" />
-
-        </TableRow>
-
-        <TableRow
-                android:id="@+id/longlatvalues"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:paddingTop="6dp">
-
-            <TextView
                     android:text="Latitude"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
@@ -250,7 +228,33 @@
                     android:layout_height="wrap_content"
                     android:layout_column="0" />
             <TextView
-                    android:id="@+id/latitude"
+                    android:id="@+id/latitudeTv"
+                    android:text="51.232523"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1" />
+        </TableRow>
+
+        <TableRow
+                android:id="@+id/longlatvalues"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingTop="6dp">
+
+            <TextView
+                    android:text="Longitude"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0" />
+            <TextView
+                    android:id="@+id/longitudeTv"
                     android:text="8.042355"
                     android:textSize="20sp"
                     android:textColor="#ffffff"

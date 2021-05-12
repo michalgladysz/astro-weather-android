@@ -76,8 +76,8 @@
             android:textSize="18sp"
             android:paddingHorizontal="10dp"
             android:ems="10"
-            android:id="@+id/editTextNumber2"
-            android:autofillHints="Latitude"/>
+            android:id="@+id/editTextNumberLatitude"
+            android:hint="0"/>
     </TableRow>
     <TableRow
             android:id="@+id/third_row"
@@ -103,8 +103,8 @@
             android:textSize="18sp"
             android:paddingHorizontal="10dp"
             android:ems="10"
-            android:id="@+id/editTextNumberSigned"
-            android:autofillHints="Longitude"/>
+            android:id="@+id/editTextNumberLongitude"
+            android:hint="0"/>
     </TableRow>
 
         <TableRow
