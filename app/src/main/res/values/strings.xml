@@ -1,5 +1,24 @@
 <resources>
     <string name="app_name">Astro</string>
+    <string name="sun">SUN</string>
+    <string name="sunrise_time">Sunrise time</string>
+    <string name="sunrise_azimuth">Sunrise azimuth</string>
+    <string name="sunset_time">Sunset time</string>
+    <string name="sunset_azimuth">Sunset azimuth</string>
+    <string name="dusk">Dusk</string>
+    <string name="twilight">Twilight</string>
+    <string name="moon">MOON</string>
+    <string name="moonrise_time">Moonrise time</string>
+    <string name="moonset_time">Moonset time</string>
+    <string name="new_moon">New moon</string>
+    <string name="moon_phase">Moon phase</string>
+    <string name="full_moon">Full moon</string>
+    <string name="day">Day</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="feels_like">Feels like</string>
+    <string name="min_temperature">Min temperature</string>
+    <string name="max_temperature">Max temperature</string>
     <string-array name="refresh_array">
         <item>1</item>
         <item>2</item>

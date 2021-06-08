@@ -49,6 +49,8 @@
                 android:id="@+id/spinner"
                 android:layout_weight="1"
                 android:theme="@style/spinnerItemStyle"
+                android:background="@drawable/edittext_bg"
+                android:popupBackground="@drawable/edittext_bg"
                 android:entries="@array/refresh_array"/>
     </TableRow>
     <TableRow
@@ -69,7 +71,7 @@
     <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
+            android:inputType="numberDecimal|numberSigned"
             android:layout_weight="1"
             android:background="@drawable/edittext_bg"
             android:textColor="@color/colorDay"
@@ -97,7 +99,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:inputType="numberDecimal"
+            android:inputType="numberDecimal|numberSigned"
             android:background="@drawable/edittext_bg"
             android:textColor="@color/colorDay"
             android:textSize="18sp"

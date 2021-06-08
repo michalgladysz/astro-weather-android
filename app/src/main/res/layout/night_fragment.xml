@@ -7,7 +7,7 @@
               android:orientation="vertical">
 
     <TextView
-            android:text="MOON"
+            android:text="@string/moon"
             android:textSize="70sp"
             android:fontFamily="sans-serif-condensed-medium"
             android:textColor="@color/Yellow"
@@ -49,7 +49,7 @@
 
 
             <TextView
-                    android:text="Moonrise time"
+                    android:text="@string/moonrise_time"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:textAlignment="center"
@@ -77,7 +77,7 @@
                 android:paddingTop="10dp">
 
             <TextView
-                    android:text="Moonset time"
+                    android:text="@string/moonset_time"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:fontFamily="sans-serif-medium"
@@ -105,7 +105,7 @@
                 android:paddingTop="10dp">
 
             <TextView
-                    android:text="New moon"
+                    android:text="@string/new_moon"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:textAlignment="center"
@@ -133,7 +133,7 @@
                 android:paddingTop="10dp">
 
             <TextView
-                    android:text="Full moon"
+                    android:text="@string/full_moon"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:textAlignment="center"
@@ -161,7 +161,7 @@
                 android:paddingTop="10dp">
 
             <TextView
-                    android:text="Moon phase"
+                    android:text="@string/moon_phase"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:textAlignment="center"
@@ -189,7 +189,7 @@
                 android:paddingTop="10dp">
 
             <TextView
-                    android:text="Day"
+                    android:text="@string/day"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:textAlignment="center"
@@ -211,13 +211,13 @@
         </TableRow>
 
         <TableRow
-                android:id="@+id/longlat"
+                android:id="@+id/latitude_row"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:paddingTop="20dp">
 
             <TextView
-                    android:text="Latitude"
+                    android:text="@string/latitude"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:textAlignment="center"
@@ -238,13 +238,13 @@
         </TableRow>
 
         <TableRow
-                android:id="@+id/longlatvalues"
+                android:id="@+id/longitude_row"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:paddingTop="10dp">
 
             <TextView
-                    android:text="Longitude"
+                    android:text="@string/longitude"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:textAlignment="center"

@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment
 
 class MainFragment : Fragment() {
 
-    private lateinit var setButton : Button
-    private lateinit var spinner : Spinner
+    private lateinit var setButton: Button
+    private lateinit var spinner: Spinner
     private lateinit var longitude: EditText
     private lateinit var latitude: EditText
 
@@ -33,9 +33,14 @@ class MainFragment : Fragment() {
         latitude = view.findViewById(R.id.editTextNumberLatitude)
 
         setButton.setOnClickListener {
-            saveData()
-            Toast.makeText(activity, "New settings set", Toast.LENGTH_LONG).show()
-            (activity as MainActivity).updateSettings()
+            if (latitude.text.toString().toDouble() >= -90 && latitude.text.toString()
+                    .toDouble() <= 90 && latitude.text.toString().toDouble() >= -180 && latitude.text.toString()
+                    .toDouble() <= 180
+            ) {
+                saveData()
+                Toast.makeText(activity, "New settings set", Toast.LENGTH_LONG).show()
+                (activity as MainActivity).updateSettings()
+            } else Toast.makeText(activity, "Incorrect values!", Toast.LENGTH_LONG).show()
         }
 
         loadData()
@@ -45,7 +50,7 @@ class MainFragment : Fragment() {
 
     private fun saveData() {
         val sharedPreferences = activity?.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE) ?: return
-        with (sharedPreferences.edit()) {
+        with(sharedPreferences.edit()) {
             val value = Integer.parseInt(spinner.selectedItem.toString())
             putInt("REFRESH_KEY", value)
             putInt("SPINNER_POSITION", spinner.selectedItemPosition)
@@ -56,7 +61,8 @@ class MainFragment : Fragment() {
     }
 
     private fun loadData() {
-        val sharedPreferences = activity!!.applicationContext.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
+        val sharedPreferences =
+            activity!!.applicationContext.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
         val spinnerPosition = sharedPreferences?.getInt("SPINNER_POSITION", 0)
         val latitudeText = sharedPreferences?.getString("LATITUDE_KEY", "51")
         val longitudeText = sharedPreferences?.getString("LONGITUDE_KEY", "13")
@@ -67,7 +73,6 @@ class MainFragment : Fragment() {
         longitude.setText(longitudeText)
         latitude.setText(latitudeText)
     }
-
 
 
 }

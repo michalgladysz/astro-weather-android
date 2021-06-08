@@ -9,20 +9,18 @@ import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.astrocalculator.*
 import kotlinx.android.synthetic.main.activity_main.*
-import android.content.SharedPreferences
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener
-import android.preference.PreferenceActivity
-import android.preference.PreferenceManager
 import kotlin.properties.Delegates
 
 
 class MainActivity : AppCompatActivity() {
     private var myViewPager2: ViewPager2? = null
     private var myAdapter: ViewPagerAdapter? = null
-//
-    private lateinit var sunFragment : SunFragment
-    private lateinit var nightFragment : NightFragment
-    private lateinit var mainFragment : MainFragment
+
+    private lateinit var sunFragment: SunFragment
+    private lateinit var nightFragment: NightFragment
+    private lateinit var mainFragment: MainFragment
+    private lateinit var weatherFragment: WeatherFragment
+    private lateinit var forecastFragment: ForecastFragment
 
     private var refreshRate = 10
     private var tabletSize by Delegates.notNull<Boolean>()
@@ -38,28 +36,34 @@ class MainActivity : AppCompatActivity() {
             mainFragment = supportFragmentManager.findFragmentById(R.id.fragment0) as MainFragment
             sunFragment = supportFragmentManager.findFragmentById(R.id.fragment1) as SunFragment
             nightFragment = supportFragmentManager.findFragmentById(R.id.fragment2) as NightFragment
+
         } else {
             myViewPager2 = findViewById(R.id.pager)
             myAdapter = ViewPagerAdapter(this)
 
-            // set Orientation in your ViewPager2
             myViewPager2!!.orientation = ViewPager2.ORIENTATION_HORIZONTAL
             myViewPager2!!.adapter = myAdapter
 
             myAdapter!!.addFragment(MainFragment())
             myAdapter!!.addFragment(SunFragment())
             myAdapter!!.addFragment(NightFragment())
+            myAdapter!!.addFragment(WeatherFragment())
+            myAdapter!!.addFragment(ForecastFragment())
 
             mainFragment = myAdapter?.getFragment(0) as MainFragment
             sunFragment = myAdapter?.getFragment(1) as SunFragment
             nightFragment = myAdapter?.getFragment(2) as NightFragment
+            weatherFragment = myAdapter?.getFragment(3) as WeatherFragment
+            forecastFragment = myAdapter?.getFragment(4) as ForecastFragment
+
+
         }
         updateSettings()
-        handler.postDelayed(runnableCode, (refreshRate * 1000).toLong());
+        handler.postDelayed(runnableCode, (refreshRate * 1000).toLong())
 
     }
 
-    private val runnableCode = object: Runnable {
+    private val runnableCode = object : Runnable {
         override fun run() {
             Toast.makeText(this@MainActivity, "Data refreshed", Toast.LENGTH_SHORT).show()
             sunFragment.updateData()
@@ -70,12 +74,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         updateSettings()
-        handler.postDelayed(runnableCode, (refreshRate * 1000).toLong());
+        handler.postDelayed(runnableCode, (refreshRate * 1000).toLong())
         super.onResume()
     }
 
     override fun onPause() {
-        handler.removeCallbacks(runnableCode); //stop handler when activity not visible
+        handler.removeCallbacks(runnableCode)
         super.onPause()
     }
 
@@ -88,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             nightFragment.loadSharedPreferences()
             nightFragment.updateData()
         }
-        println("set pushed $refreshRate")
+//        println("set pushed $refreshRate")
     }
 
 }
