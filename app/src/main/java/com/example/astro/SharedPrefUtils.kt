@@ -31,13 +31,5 @@ class SharedPrefUtils {
         fun saveData(context: Context, key: String?, value: Boolean) {
             context.getSharedPreferences(PREF_APP, Context.MODE_PRIVATE).edit().putBoolean(key, value).apply()
         }
-
-        fun getSharedPrefEditor(context: Context, pref: String?): SharedPreferences.Editor {
-            return context.getSharedPreferences(pref, Context.MODE_PRIVATE).edit()
-        }
-
-        fun saveData(editor: SharedPreferences.Editor) {
-            editor.apply()
-        }
     }
 }

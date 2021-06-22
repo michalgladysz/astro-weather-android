@@ -16,7 +16,10 @@ import kotlinx.android.synthetic.main.forecast_fragment.*
 class ForecastFragment : Fragment() {
 
     private lateinit var weatherInfo : Root
+
     private var cityName: TextView? = null
+
+    private var units : String? = "C"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -30,12 +33,12 @@ class ForecastFragment : Fragment() {
         updateData()
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = ForecastAdapter(weatherInfo)
+            adapter = units?.let { ForecastAdapter(weatherInfo, it) }
         }
         initTv()
     }
 
-    fun updateData() {
+    private fun updateData() {
         loadSharedPreferences()
         recyclerView.apply {
             adapter?.notifyDataSetChanged()
@@ -54,7 +57,9 @@ class ForecastFragment : Fragment() {
 
     private fun loadSharedPreferences() {
         val weatherInfoJson = activity?.let { SharedPrefUtils.getStringData(it,"WEATHER_INFO").toString() }
-        cityName?.text = activity?.let { SharedPrefUtils.getStringData(it,"CITY_NAME").toString() }
+        cityName?.text = activity?.let { SharedPrefUtils.getStringData(it,"CITY_NAME").toString() + " forecast" }
+        units = activity?.let { SharedPrefUtils.getStringData(it, "UNITS") }
+        units = if (units == "metric") "C" else "F"
         val gson = Gson()
         weatherInfo = gson.fromJson(weatherInfoJson, Root::class.java)
     }

@@ -22,6 +22,8 @@ class WeatherFragment : Fragment() {
     private var feelsLikeTemperature: TextView? = null
     private var cityName: TextView? = null
 
+    private var units : String? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         return inflater.inflate(
@@ -53,11 +55,11 @@ class WeatherFragment : Fragment() {
 
     private fun updateTextViews(weatherInfo : Root) {
 
-        temperature!!.text = String.format("%d°C", weatherInfo.current.temp.roundToInt())
-        feelsLikeTemperature!!.text = String.format("%d°C", weatherInfo.current.feels_like.roundToInt())
+        temperature!!.text = String.format("%d°$units", weatherInfo.current.temp.roundToInt())
+        feelsLikeTemperature!!.text = String.format("%d°$units", weatherInfo.current.feels_like.roundToInt())
         weatherDescription!!.text =  weatherInfo.current.weather[0].description.toUpperCase()
-        maxTemperature!!.text = String.format("%d°C", weatherInfo.daily[0].temp.max.roundToInt())
-        minTemperature!!.text = String.format("%d°C", weatherInfo.daily[0].temp.min.roundToInt())
+        maxTemperature!!.text = String.format("%d°$units", weatherInfo.daily[0].temp.max.roundToInt())
+        minTemperature!!.text = String.format("%d°$units", weatherInfo.daily[0].temp.min.roundToInt())
 
         when (weatherInfo.current.weather[0].icon) {
             "01d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_clear_sun_100,0,0)
@@ -72,14 +74,16 @@ class WeatherFragment : Fragment() {
         }
     }
 
-    fun updateData() {
+    private fun updateData() {
         val weatherInfo = loadSharedPreferences()
         updateTextViews(weatherInfo)
     }
 
     private fun loadSharedPreferences() : Root {
         val weatherInfoJson = activity?.let { SharedPrefUtils.getStringData(it,"WEATHER_INFO") }
-        cityName?.text = activity?.let { SharedPrefUtils.getStringData(it, "CITY_NAME") }
+        cityName?.text = activity?.let { SharedPrefUtils.getStringData(it, "CITY_NAME") + " weather" }
+        units = activity?.let { SharedPrefUtils.getStringData(it, "UNITS") }
+        units = if (units == "metric") "C" else "F"
         val gson = Gson()
         return gson.fromJson(weatherInfoJson, Root::class.java)
     }

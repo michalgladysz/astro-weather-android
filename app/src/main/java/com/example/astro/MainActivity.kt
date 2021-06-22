@@ -1,6 +1,5 @@
 package com.example.astro
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -15,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.properties.Delegates
 import com.google.gson.*
 import kotlinx.android.synthetic.main.day_fragment.*
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -34,8 +32,9 @@ class MainActivity : AppCompatActivity() {
     private var latitude : String = "51"
     private var longitude : String = "21"
 
+    private var units : String = "metric"
+
     private var refreshRate = 10
-    private var tabletSize by Delegates.notNull<Boolean>()
 
     val handler = Handler(Looper.getMainLooper())
 
@@ -44,32 +43,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         loadData()
 
-        tabletSize = resources.getBoolean(R.bool.isTablet)
-        if (tabletSize) {
-            mainFragment = supportFragmentManager.findFragmentById(R.id.fragment0) as MainFragment
-            sunFragment = supportFragmentManager.findFragmentById(R.id.fragment1) as SunFragment
-            nightFragment = supportFragmentManager.findFragmentById(R.id.fragment2) as NightFragment
 
-        } else {
-            myViewPager2 = findViewById(R.id.pager)
-            myAdapter = ViewPagerAdapter(this)
+        myViewPager2 = findViewById(R.id.pager)
+        myAdapter = ViewPagerAdapter(this)
 
-            myViewPager2!!.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-            myViewPager2!!.adapter = myAdapter
+        myViewPager2!!.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        myViewPager2!!.adapter = myAdapter
 
-            myAdapter!!.addFragment(MainFragment())
-            myAdapter!!.addFragment(SunFragment())
-            myAdapter!!.addFragment(NightFragment())
-            myAdapter!!.addFragment(WeatherFragment())
-            myAdapter!!.addFragment(ForecastFragment())
+        myAdapter!!.addFragment(MainFragment())
+        myAdapter!!.addFragment(SunFragment())
+        myAdapter!!.addFragment(NightFragment())
+        myAdapter!!.addFragment(WeatherFragment())
+        myAdapter!!.addFragment(ForecastFragment())
 
-            mainFragment = myAdapter?.getFragment(0) as MainFragment
-            sunFragment = myAdapter?.getFragment(1) as SunFragment
-            nightFragment = myAdapter?.getFragment(2) as NightFragment
-            weatherFragment = myAdapter?.getFragment(3) as WeatherFragment
-            forecastFragment = myAdapter?.getFragment(4) as ForecastFragment
+        mainFragment = myAdapter?.getFragment(0) as MainFragment
+        sunFragment = myAdapter?.getFragment(1) as SunFragment
+        nightFragment = myAdapter?.getFragment(2) as NightFragment
+        weatherFragment = myAdapter?.getFragment(3) as WeatherFragment
+        forecastFragment = myAdapter?.getFragment(4) as ForecastFragment
 
-        }
+
         updateSettings()
         handler.postDelayed(runnableCode, 1)
 
@@ -96,21 +89,20 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
     }
 
+    fun refreshData() {
+        handler.postDelayed(runnableCode, 1)
+    }
+
     fun updateSettings() {
         refreshRate = SharedPrefUtils.getIntData(this,"REFRESH_KEY")
+        units = SharedPrefUtils.getStringData(this, "UNITS").toString()
         getWeather()
-        if (tabletSize) {
-            sunFragment.loadSharedPreferences()
-            sunFragment.updateData()
-            nightFragment.loadSharedPreferences()
-            nightFragment.updateData()
-        }
     }
 
     private fun getWeather() {
         loadData()
         val request = ServiceBuilder.buildService(ApiEndpoints::class.java)
-        val call = request.getWeather(latitude, longitude, "hourly,minutely,alerts", "ea96da650b548546f840ea1f5a8f13af")
+        val call = request.getWeather(latitude, longitude, units,"hourly,minutely,alerts", "ea96da650b548546f840ea1f5a8f13af")
         call.enqueue(object : Callback<Root> {
             override fun onResponse(call: Call<Root>, response: Response<Root>) {
                     val gson = Gson()
@@ -130,6 +122,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadData() {
         latitude = SharedPrefUtils.getStringData(this, "LATITUDE_KEY").toString()
         longitude = SharedPrefUtils.getStringData(this, "LONGITUDE_KEY").toString()
+        units = SharedPrefUtils.getStringData(this, "UNITS").toString()
     }
 
 }

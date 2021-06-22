@@ -13,6 +13,7 @@ interface ApiEndpoints {
     fun getWeather(
         @Query("lat") lat: String,
         @Query("lon") long: String,
+        @Query("units") units: String,
         @Query("exclude") exclude: String,
         @Query("appid") appid: String
     ): Call<Root>

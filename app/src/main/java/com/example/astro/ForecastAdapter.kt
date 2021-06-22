@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.math.roundToInt
 
-class ForecastAdapter(private val weatherForecast: Root) :
+class ForecastAdapter(private val weatherForecast: Root, private val units : String) :
     RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {
 
     /**
@@ -48,7 +48,7 @@ class ForecastAdapter(private val weatherForecast: Root) :
         val formatter = SimpleDateFormat("E, d MMMM");
         val dateString = formatter.format(Date(weatherForecast.daily[position].dt * 1000))
 
-        viewHolder.temperature.text = String.format("%d°C", weatherForecast.daily[position].temp.day.roundToInt())
+        viewHolder.temperature.text = String.format("%d°$units", weatherForecast.daily[position].temp.day.roundToInt())
         viewHolder.textView.text = dateString.toString()
         viewHolder.description.text = weatherForecast.daily[position].weather[0].description.capitalize()
         when (weatherForecast.daily[position].weather[0].icon) {
