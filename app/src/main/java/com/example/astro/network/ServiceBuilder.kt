@@ -8,9 +8,8 @@ object ServiceBuilder {
     private val client = OkHttpClient.Builder().build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.openweathermap.org/data/2.5/")
+        .baseUrl("https://api.openweathermap.org/")
         .addConverterFactory(GsonConverterFactory.create())
-        .client(client)
         .build()
 
     fun<T> buildService(service: Class<T>): T{

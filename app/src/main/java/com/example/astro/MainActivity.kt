@@ -8,8 +8,17 @@ import android.os.Looper
 import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.astrocalculator.*
+import com.example.astro.model.Root
+import com.example.astro.network.ApiEndpoints
+import com.example.astro.network.ServiceBuilder
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import kotlin.properties.Delegates
+import com.google.gson.*
+import kotlinx.android.synthetic.main.day_fragment.*
+import kotlinx.android.synthetic.main.main_fragment.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +31,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var weatherFragment: WeatherFragment
     private lateinit var forecastFragment: ForecastFragment
 
+    private var latitude : String = "51"
+    private var longitude : String = "21"
+
     private var refreshRate = 10
     private var tabletSize by Delegates.notNull<Boolean>()
 
@@ -30,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        loadData()
 
         tabletSize = resources.getBoolean(R.bool.isTablet)
         if (tabletSize) {
@@ -56,10 +69,9 @@ class MainActivity : AppCompatActivity() {
             weatherFragment = myAdapter?.getFragment(3) as WeatherFragment
             forecastFragment = myAdapter?.getFragment(4) as ForecastFragment
 
-
         }
         updateSettings()
-        handler.postDelayed(runnableCode, (refreshRate * 1000).toLong())
+        handler.postDelayed(runnableCode, 1)
 
     }
 
@@ -68,13 +80,14 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity, "Data refreshed", Toast.LENGTH_SHORT).show()
             sunFragment.updateData()
             nightFragment.updateData()
-            handler.postDelayed(this, (refreshRate * 1000).toLong())
+            getWeather()
+            handler.postDelayed(this, (refreshRate * 60000).toLong())
         }
     }
 
     override fun onResume() {
         updateSettings()
-        handler.postDelayed(runnableCode, (refreshRate * 1000).toLong())
+        handler.postDelayed(runnableCode, 1)
         super.onResume()
     }
 
@@ -84,15 +97,39 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun updateSettings() {
-        val sharedPreferences = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
-        refreshRate = sharedPreferences.getInt("REFRESH_KEY", 1)
+        refreshRate = SharedPrefUtils.getIntData(this,"REFRESH_KEY")
+        getWeather()
         if (tabletSize) {
             sunFragment.loadSharedPreferences()
             sunFragment.updateData()
             nightFragment.loadSharedPreferences()
             nightFragment.updateData()
         }
-//        println("set pushed $refreshRate")
+    }
+
+    private fun getWeather() {
+        loadData()
+        val request = ServiceBuilder.buildService(ApiEndpoints::class.java)
+        val call = request.getWeather(latitude, longitude, "hourly,minutely,alerts", "ea96da650b548546f840ea1f5a8f13af")
+        call.enqueue(object : Callback<Root> {
+            override fun onResponse(call: Call<Root>, response: Response<Root>) {
+                    val gson = Gson()
+                    val jsonString = gson.toJson(response.body())
+                    saveWeatherInfo(jsonString)
+            }
+            override fun onFailure(call: Call<Root>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun saveWeatherInfo(weatherInfo : String) {
+        SharedPrefUtils.saveData(this, "WEATHER_INFO", weatherInfo)
+    }
+
+    private fun loadData() {
+        latitude = SharedPrefUtils.getStringData(this, "LATITUDE_KEY").toString()
+        longitude = SharedPrefUtils.getStringData(this, "LONGITUDE_KEY").toString()
     }
 
 }
