@@ -10,7 +10,7 @@
     <TextView
             android:id="@+id/city_name"
             android:text=""
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:fontFamily="sans-serif-condensed-medium"
             android:textColor="@color/colorDayText"
             android:textAlignment="center"
@@ -28,7 +28,7 @@
 
         <TextView android:id="@+id/weather_description"
             android:text="CLEAR SKY"
-            android:textSize="40sp"
+            android:textSize="60sp"
             android:fontFamily="sans-serif-condensed-medium"
             android:textColor="#ffffff"
             android:textAlignment="center"
@@ -42,7 +42,7 @@
     <TextView
             android:id="@+id/temperature"
             android:text="10°C"
-            android:textSize="50sp"
+            android:textSize="70sp"
             android:fontFamily="sans-serif-condensed-medium"
             android:textColor="#ffffff"
             android:textAlignment="center"
@@ -64,7 +64,7 @@
 
         <TextView
                 android:text="@string/feels_like"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textColor="@color/colorBackground"
                 android:textAlignment="center"
                 android:fontFamily="sans-serif-medium"
@@ -74,7 +74,7 @@
         <TextView
                 android:id="@+id/feels_like_temperature"
                 android:text="24°C"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textColor="@color/colorBackground"
                 android:textAlignment="center"
                 android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
 
                 <TextView
                         android:text="@string/min_temperature"
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorBackground"
                         android:textAlignment="center"
                         android:fontFamily="sans-serif-medium"
@@ -99,7 +99,7 @@
                 <TextView
                         android:id="@+id/min_temperature"
                         android:text="19°C"
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorBackground"
                         android:textAlignment="center"
                         android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
 
                 <TextView
                         android:text="@string/max_temperature"
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorBackground"
                         android:textAlignment="center"
                         android:fontFamily="sans-serif-medium"
@@ -126,7 +126,7 @@
                 <TextView
                         android:id="@+id/max_temperature"
                         android:text="24°C"
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorBackground"
                         android:textAlignment="center"
                         android:layout_width="wrap_content"
@@ -154,7 +154,7 @@
 
                 <TextView
                         android:text="Pressure"
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorDayText"
                         android:textAlignment="center"
                         android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
                 <TextView
                         android:id="@+id/pressure"
                         android:text=""
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorDayText"
                         android:textAlignment="center"
                         android:layout_width="wrap_content"
@@ -181,7 +181,7 @@
 
                 <TextView
                         android:text="Humidity"
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorDayText"
                         android:textAlignment="center"
                         android:fontFamily="sans-serif-medium"
@@ -191,7 +191,7 @@
                 <TextView
                         android:id="@+id/humidity"
                         android:text=""
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorDayText"
                         android:textAlignment="center"
                         android:layout_width="wrap_content"
@@ -209,7 +209,7 @@
 
                 <TextView
                         android:text="@string/latitude"
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorDayText"
                         android:textAlignment="center"
                         android:fontFamily="sans-serif-medium"
@@ -219,7 +219,7 @@
                 <TextView
                         android:id="@+id/latitudeTv"
                         android:text=""
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorDayText"
                         android:textAlignment="center"
                         android:layout_width="wrap_content"
@@ -236,7 +236,7 @@
 
                 <TextView
                         android:text="@string/longitude"
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorDayText"
                         android:textAlignment="center"
                         android:fontFamily="sans-serif-medium"
@@ -246,7 +246,7 @@
                 <TextView
                         android:id="@+id/longitudeTv"
                         android:text=""
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:textColor="@color/colorDayText"
                         android:textAlignment="center"
                         android:layout_width="wrap_content"

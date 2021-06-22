@@ -9,7 +9,7 @@
 
     <TextView
             android:text=""
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:fontFamily="sans-serif-condensed-medium"
             android:textColor="@color/colorBackground"
             android:textAlignment="center"

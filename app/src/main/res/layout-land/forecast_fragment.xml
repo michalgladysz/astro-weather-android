@@ -8,7 +8,7 @@
               android:orientation="vertical">
 
     <TextView
-            android:text="Warsaw, PL"
+            android:text=""
             android:textSize="20sp"
             android:fontFamily="sans-serif-condensed-medium"
             android:textColor="@color/colorBackground"
