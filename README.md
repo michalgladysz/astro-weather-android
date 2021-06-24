@@ -1,9 +1,9 @@
 # astro-weather-android
 
-##About
+## About
 Weather app made for a University Project
 
-##Features
+## Features
 - Current weather
 - 7 days forecast
 - Sun and moon info
@@ -12,9 +12,14 @@ Weather app made for a University Project
 - Automatic data refresh
 
 ## Screenshots
-![Screenshot](screenshots/Screenshot_1.png)
-![Screenshot](screenshots/Screenshot_2.png)
-![Screenshot](screenshots/Screenshot_3.png)
-![Screenshot](screenshots/Screenshot_4.png)
-![Screenshot](screenshots/Screenshot_5.png)
-![Screenshot](screenshots/Screenshot_6.png)
+<p float="left">
+  <img src="screenshots/Screenshot_1.png" alt="Screenshot" width="300"/>
+  <img src="screenshots/Screenshot_2.png" alt="Screenshot" width="300"/>
+  <img src="screenshots/Screenshot_3.png" alt="Screenshot" width="300"/>
+</p>
+
+<p float="left">
+  <img src="screenshots/Screenshot_4.png" alt="Screenshot" width="300"/>
+  <img src="screenshots/Screenshot_5.png" alt="Screenshot" width="300"/>
+  <img src="screenshots/Screenshot_6.png" alt="Screenshot" width="300"/>
+</p>
