@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Astro</string>
+    <string name="app_name">Astro Weather</string>
     <string name="sun">SUN</string>
     <string name="sunrise_time">Sunrise time</string>
     <string name="sunrise_azimuth">Sunrise azimuth</string>

@@ -1,6 +1,5 @@
 package com.example.astro
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,20 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.astro.model.Root
-import com.google.gson.Gson
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.math.roundToInt
 
 class ForecastAdapter(private val weatherForecast: Root, private val units : String) :
     RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.textView)
         val description: TextView = view.findViewById(R.id.description)
@@ -33,16 +25,13 @@ class ForecastAdapter(private val weatherForecast: Root, private val units : Str
         }
     }
 
-    // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.forecast_day_item, viewGroup, false)
 
         return ViewHolder(view)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
         val formatter = SimpleDateFormat("E, d MMMM");
@@ -62,7 +51,6 @@ class ForecastAdapter(private val weatherForecast: Root, private val units : Str
             "13d" -> viewHolder.image.setImageResource(R.drawable.ic_snow_50)
             "50d" -> viewHolder.image.setImageResource(R.drawable.ic_cloud_50)
         }
-
     }
 
     override fun getItemCount() = weatherForecast.daily.size

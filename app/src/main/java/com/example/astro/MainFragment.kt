@@ -1,13 +1,15 @@
 package com.example.astro
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import android.location.Geocoder
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import kotlinx.android.synthetic.main.main_fragment.*
 import java.util.*
 import android.widget.AdapterView
 import java.math.BigDecimal
@@ -62,40 +64,31 @@ class MainFragment : Fragment() {
         spinnerFavCities.adapter = adapter
 
         setButton.setOnClickListener {
-            val geocoder = Geocoder(activity, Locale.ENGLISH)
+            if (isInternetConnected()) {
 
-            val address = geocoder.getFromLocationName(cityName.text.toString(), 10)
-
-            var lat = BigDecimal(address[0].latitude)
-            lat = lat.setScale(4, BigDecimal.ROUND_HALF_UP)
-
-            var lon = BigDecimal(address[0].longitude)
-            lon = lon.setScale(4, BigDecimal.ROUND_HALF_UP)
-
-            latitude.setText(lat.toString())
-            longitude.setText(lon.toString())
-
-            saveData()
-            Toast.makeText(activity, "New settings set", Toast.LENGTH_LONG).show()
-            (activity as MainActivity).updateSettings()
-        }
-
-
-        setCoordsButton.setOnClickListener {
-            if (latitude.text.toString().toDouble() >= -90 && latitude.text.toString()
-                    .toDouble() <= 90 && latitude.text.toString().toDouble() >= -180 && latitude.text.toString()
-                    .toDouble() <= 180
-            ) {
-                val geocoder = Geocoder(activity, Locale.ENGLISH)
-
-                val address =
-                    geocoder.getFromLocation(latitude.text.toString().toDouble(), longitude.text.toString().toDouble(), 1)
-                cityName.setText(address[0].locality)
+                setCoordsFromLocationName()
 
                 saveData()
                 Toast.makeText(activity, "New settings set", Toast.LENGTH_LONG).show()
                 (activity as MainActivity).updateSettings()
-            } else Toast.makeText(activity, "Incorrect values!", Toast.LENGTH_LONG).show()
+            } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG).show()
+        }
+
+
+        setCoordsButton.setOnClickListener {
+            if (isInternetConnected()) {
+                if (latitude.text.toString().toDouble() >= -90 && latitude.text.toString()
+                        .toDouble() <= 90 && latitude.text.toString().toDouble() >= -180 && latitude.text.toString()
+                        .toDouble() <= 180
+                ) {
+
+                    setLocationFromCoords()
+
+                    saveData()
+                    Toast.makeText(activity, "New settings set", Toast.LENGTH_LONG).show()
+                    (activity as MainActivity).updateSettings()
+                } else Toast.makeText(activity, "Incorrect values!", Toast.LENGTH_LONG).show()
+            } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG).show()
         }
 
         refreshButton.setOnClickListener {
@@ -104,17 +97,13 @@ class MainFragment : Fragment() {
 
         addToFavButton.setOnClickListener {
             favoriteCities.add(cityName.text.toString())
-            adapter.clear()
-            adapter.addAll(favoriteCities)
-            adapter.notifyDataSetChanged()
+            updateSavedCitiesSpinner()
             saveData()
         }
 
         removeFromFavButton.setOnClickListener {
             favoriteCities.remove(cityName.text.toString())
-            adapter.clear()
-            adapter.addAll(favoriteCities)
-            adapter.notifyDataSetChanged()
+            updateSavedCitiesSpinner()
             saveData()
         }
 
@@ -125,38 +114,32 @@ class MainFragment : Fragment() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (iCurrentSelection != position){
-                    cityName.setText(spinnerFavCities.selectedItem.toString())
-                    val geocoder = Geocoder(activity, Locale.ENGLISH)
+                if (isInternetConnected()) {
+                    if (iCurrentSelection != position){
+                        cityName.setText(spinnerFavCities.selectedItem.toString())
 
-                    val address = geocoder.getFromLocationName(cityName.text.toString(), 1)
+                        setCoordsFromLocationName()
 
-                    var lat = BigDecimal(address[0].latitude)
-                    lat = lat.setScale(4, BigDecimal.ROUND_HALF_UP)
-
-                    var lon = BigDecimal(address[0].longitude)
-                    lon = lon.setScale(4, BigDecimal.ROUND_HALF_UP)
-
-                    latitude.setText(lat.toString())
-                    longitude.setText(lon.toString())
-
-                    saveData()
-                    Toast.makeText(activity, "New settings set", Toast.LENGTH_LONG).show()
-                    (activity as MainActivity).updateSettings()
-                }
-                iCurrentSelection = position
+                        saveData()
+                        Toast.makeText(activity, "New settings set", Toast.LENGTH_LONG).show()
+                        (activity as MainActivity).updateSettings()
+                    }
+                    iCurrentSelection = position
+                } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG).show()
             }
         }
 
         toggleButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                activity?.let { SharedPrefUtils.saveData(it, "UNITS", "imperial") }
-            } else {
-                activity?.let { SharedPrefUtils.saveData(it, "UNITS", "metric") }
-            }
-            activity?.let { SharedPrefUtils.saveData(it, "UNITS_TOGGLE_POSITION", toggleButton.isChecked) }
-            (activity as MainActivity).updateSettings()
-            (activity as MainActivity).refreshData()
+            if (isInternetConnected()) {
+                if (isChecked) {
+                    activity?.let { SharedPrefUtils.saveData(it, "UNITS", "imperial") }
+                } else {
+                    activity?.let { SharedPrefUtils.saveData(it, "UNITS", "metric") }
+                }
+                activity?.let { SharedPrefUtils.saveData(it, "UNITS_TOGGLE_POSITION", toggleButton.isChecked) }
+                (activity as MainActivity).updateSettings()
+                (activity as MainActivity).refreshData()
+            } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG).show()
         }
 
         loadData()
@@ -198,8 +181,40 @@ class MainFragment : Fragment() {
         latitude.setText(latitudeText)
         cityName.setText(cityNameSp)
 
+        updateSavedCitiesSpinner()
+    }
+
+    private fun updateSavedCitiesSpinner() {
         adapter.clear()
         adapter.addAll(favoriteCities)
         adapter.notifyDataSetChanged()
+    }
+
+    private fun setCoordsFromLocationName() {
+        val geocoder = Geocoder(activity, Locale.ENGLISH)
+
+        val address = geocoder.getFromLocationName(cityName.text.toString(), 1)
+
+        var lat = BigDecimal(address[0].latitude)
+        lat = lat.setScale(4, BigDecimal.ROUND_HALF_UP)
+
+        var lon = BigDecimal(address[0].longitude)
+        lon = lon.setScale(4, BigDecimal.ROUND_HALF_UP)
+
+        latitude.setText(lat.toString())
+        longitude.setText(lon.toString())
+    }
+
+    private fun setLocationFromCoords() {
+        val geocoder = Geocoder(activity, Locale.ENGLISH)
+
+        val address = geocoder.getFromLocation(latitude.text.toString().toDouble(), longitude.text.toString().toDouble(), 1)
+        cityName.setText(address[0].locality)
+    }
+
+    private fun isInternetConnected(): Boolean {
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        return activeNetwork?.isConnected == true
     }
 }

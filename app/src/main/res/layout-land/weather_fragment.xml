@@ -31,7 +31,7 @@
 
             <TextView
                 android:text="CLEAR SKY"
-                android:textSize="32sp"
+                android:textSize="30sp"
                 android:fontFamily="@font/rubik"
                 android:textColor="#ffffff"
                 android:textAlignment="center"

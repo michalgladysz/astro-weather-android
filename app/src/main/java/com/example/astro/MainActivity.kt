@@ -82,7 +82,6 @@ class MainActivity : AppCompatActivity() {
 
     private val runnableCode = object : Runnable {
         override fun run() {
-            Toast.makeText(this@MainActivity, "Data refreshed", Toast.LENGTH_SHORT).show()
             sunFragment.updateData()
             nightFragment.updateData()
             getWeather()
@@ -120,6 +119,7 @@ class MainActivity : AppCompatActivity() {
                     val gson = Gson()
                     val jsonString = gson.toJson(response.body())
                     saveWeatherInfo(jsonString)
+                    Toast.makeText(this@MainActivity, "Data refreshed", Toast.LENGTH_SHORT).show()
             }
             override fun onFailure(call: Call<Root>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "No internet connection. Cannot refresh data.", Toast.LENGTH_SHORT).show()

@@ -1,5 +1,6 @@
 package com.example.astro
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -71,17 +72,32 @@ class WeatherFragment : Fragment() {
         pressure?.text = weatherInfo.current.pressure.toString() + " hPa"
         humidity?.text =  weatherInfo.current.humidity.toString() + "%"
 
-        when (weatherInfo.current.weather[0].icon) {
-            "01d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_clear_sun_100,0,0)
-            "02d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_sun_100,0,0)
-            "03d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_cloud_100,0,0)
-            "04d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_cloud_100,0,0)
-            "09d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_rain_100,0,0)
-            "10d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_rain_100,0,0)
-            "11d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_storm_100,0,0)
-            "13d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_snow_100,0, 0)
-            "50d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_cloud_100,0,0)
+        if (this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            when (weatherInfo.current.weather[0].icon) {
+                "01d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_clear_sun_100,0,0)
+                "02d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_sun_100,0,0)
+                "03d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_cloud_100,0,0)
+                "04d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_cloud_100,0,0)
+                "09d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_rain_100,0,0)
+                "10d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_rain_100,0,0)
+                "11d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_storm_100,0,0)
+                "13d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_snow_100,0, 0)
+                "50d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_cloud_100,0,0)
+            }
+        } else {
+            when (weatherInfo.current.weather[0].icon) {
+                "01d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_clear_sun_50,0, 0,0)
+                "02d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_sun_50,0,0, 0)
+                "03d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cloud_50,0,0, 0)
+                "04d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cloud_50,0,0, 0)
+                "09d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_rain_50,0,0, 0)
+                "10d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_rain_50,0,0, 0)
+                "11d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_storm_50,0,0, 0)
+                "13d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_snow_50,0, 0, 0)
+                "50d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cloud_50,0,0, 0)
+            }
         }
+
     }
 
     private fun updateData() {
