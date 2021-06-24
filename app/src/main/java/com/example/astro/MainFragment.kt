@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
     private lateinit var latitude: EditText
     private lateinit var cityName: EditText
 
-    private lateinit var adapter : ArrayAdapter<String>
+    private lateinit var adapter: ArrayAdapter<String>
     private var favoriteCities = mutableSetOf("Warsaw")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -71,7 +71,8 @@ class MainFragment : Fragment() {
                 saveData()
                 Toast.makeText(activity, "New settings set", Toast.LENGTH_LONG).show()
                 (activity as MainActivity).updateSettings()
-            } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG).show()
+            } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG)
+                .show()
         }
 
 
@@ -88,7 +89,8 @@ class MainFragment : Fragment() {
                     Toast.makeText(activity, "New settings set", Toast.LENGTH_LONG).show()
                     (activity as MainActivity).updateSettings()
                 } else Toast.makeText(activity, "Incorrect values!", Toast.LENGTH_LONG).show()
-            } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG).show()
+            } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG)
+                .show()
         }
 
         refreshButton.setOnClickListener {
@@ -109,13 +111,13 @@ class MainFragment : Fragment() {
 
         var iCurrentSelection: Int = spinnerFavCities.selectedItemPosition
 
-        spinnerFavCities.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        spinnerFavCities.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (isInternetConnected()) {
-                    if (iCurrentSelection != position){
+                    if (iCurrentSelection != position) {
                         cityName.setText(spinnerFavCities.selectedItem.toString())
 
                         setCoordsFromLocationName()
@@ -125,7 +127,8 @@ class MainFragment : Fragment() {
                         (activity as MainActivity).updateSettings()
                     }
                     iCurrentSelection = position
-                } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG).show()
+                } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG)
+                    .show()
             }
         }
 
@@ -139,7 +142,8 @@ class MainFragment : Fragment() {
                 activity?.let { SharedPrefUtils.saveData(it, "UNITS_TOGGLE_POSITION", toggleButton.isChecked) }
                 (activity as MainActivity).updateSettings()
                 (activity as MainActivity).refreshData()
-            } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG).show()
+            } else Toast.makeText(activity, "No internet connection, new setting cannot be set", Toast.LENGTH_LONG)
+                .show()
         }
 
         loadData()
@@ -153,16 +157,16 @@ class MainFragment : Fragment() {
         activity?.let { SharedPrefUtils.saveData(it, "LATITUDE_KEY", latitude.text.toString()) }
         activity?.let { SharedPrefUtils.saveData(it, "LONGITUDE_KEY", longitude.text.toString()) }
         activity?.let { SharedPrefUtils.saveData(it, "CITY_NAME", cityName.text.toString()) }
-        activity?.let { SharedPrefUtils.saveData(it, "FAVORITE_CITIES",java.lang.String.join(",", favoriteCities)) }
+        activity?.let { SharedPrefUtils.saveData(it, "FAVORITE_CITIES", java.lang.String.join(",", favoriteCities)) }
     }
 
     private fun loadData() {
-        val spinnerPosition = activity?.let { SharedPrefUtils.getIntData(it,"SPINNER_POSITION") }
-        val latitudeText = activity?.let { SharedPrefUtils.getStringData(it,"LATITUDE_KEY") }
-        val longitudeText = activity?.let { SharedPrefUtils.getStringData(it,"LONGITUDE_KEY") }
-        val cityNameSp = activity?.let { SharedPrefUtils.getStringData(it,"CITY_NAME") }
-        val isCheckedToggle = activity?.let { SharedPrefUtils.getBooleanData(it,"UNITS_TOGGLE_POSITION") }
-        val favoriteCitiesString = activity?.let { SharedPrefUtils.getStringData(it,"FAVORITE_CITIES") }
+        val spinnerPosition = activity?.let { SharedPrefUtils.getIntData(it, "SPINNER_POSITION") }
+        val latitudeText = activity?.let { SharedPrefUtils.getStringData(it, "LATITUDE_KEY") }
+        val longitudeText = activity?.let { SharedPrefUtils.getStringData(it, "LONGITUDE_KEY") }
+        val cityNameSp = activity?.let { SharedPrefUtils.getStringData(it, "CITY_NAME") }
+        val isCheckedToggle = activity?.let { SharedPrefUtils.getBooleanData(it, "UNITS_TOGGLE_POSITION") }
+        val favoriteCitiesString = activity?.let { SharedPrefUtils.getStringData(it, "FAVORITE_CITIES") }
 
         if (favoriteCitiesString != null) {
             val list = favoriteCitiesString.split(",")
@@ -208,7 +212,8 @@ class MainFragment : Fragment() {
     private fun setLocationFromCoords() {
         val geocoder = Geocoder(activity, Locale.ENGLISH)
 
-        val address = geocoder.getFromLocation(latitude.text.toString().toDouble(), longitude.text.toString().toDouble(), 1)
+        val address =
+            geocoder.getFromLocation(latitude.text.toString().toDouble(), longitude.text.toString().toDouble(), 1)
         cityName.setText(address[0].locality)
     }
 

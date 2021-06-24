@@ -18,7 +18,7 @@ class ExtraWeatherFragment : Fragment() {
     private var rainVolume: TextView? = null
     private var visibility: TextView? = null
 
-    private var units : String? = null
+    private var units: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -49,7 +49,7 @@ class ExtraWeatherFragment : Fragment() {
         cityName = view?.findViewById(R.id.city_name) as TextView
     }
 
-    private fun updateTextViews(weatherInfo : Root) {
+    private fun updateTextViews(weatherInfo: Root) {
         windSpeed?.text = weatherInfo.current.wind_speed.toString() + " " + units
         windDirection?.text = weatherInfo.current.wind_deg.toString()
         cloudiness?.text = weatherInfo.current.clouds.toString() + "%"
@@ -62,8 +62,8 @@ class ExtraWeatherFragment : Fragment() {
         updateTextViews(weatherInfo)
     }
 
-    private fun loadSharedPreferences() : Root {
-        val weatherInfoJson = activity?.let { SharedPrefUtils.getStringData(it,"WEATHER_INFO") }
+    private fun loadSharedPreferences(): Root {
+        val weatherInfoJson = activity?.let { SharedPrefUtils.getStringData(it, "WEATHER_INFO") }
         units = activity?.let { SharedPrefUtils.getStringData(it, "UNITS") }
         units = if (units == "metric") "m/s" else "mph"
         cityName?.text = activity?.let { SharedPrefUtils.getStringData(it, "CITY_NAME") + " weather" }

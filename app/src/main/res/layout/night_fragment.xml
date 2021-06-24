@@ -47,7 +47,6 @@
                 android:paddingTop="10dp">
 
 
-
             <TextView
                     android:text="@string/moonrise_time"
                     android:textSize="20sp"
@@ -56,7 +55,7 @@
                     android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/moonrise_time"
                     android:text="08:10:20"
@@ -66,7 +65,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -84,7 +83,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/moonset_time"
                     android:text="08:10:20"
@@ -112,7 +111,7 @@
                     android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/new_moon"
                     android:text="10.05.21"
@@ -122,7 +121,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -140,7 +139,7 @@
                     android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/full_moon"
                     android:text="10.05.21"
@@ -150,7 +149,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -168,7 +167,7 @@
                     android:layout_width="wrap_content"
                     android:fontFamily="@font/rubik_medium"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/moon_phase"
                     android:text="0.806"
@@ -178,7 +177,7 @@
                     android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -196,7 +195,7 @@
                     android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/moon_day"
                     android:text="225"
@@ -206,7 +205,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -224,7 +223,7 @@
                     android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/latitudeTv"
                     android:text="51.232523"
@@ -234,7 +233,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -252,7 +251,7 @@
                     android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/longitudeTv"
                     android:text="8.042355"
@@ -262,7 +261,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
     </TableLayout>

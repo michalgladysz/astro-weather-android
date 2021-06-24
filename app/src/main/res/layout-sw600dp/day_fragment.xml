@@ -28,7 +28,7 @@
             android:textSize="30sp"
             android:textColor="@color/colorBackground"
             android:format12Hour="hh:mm:ss a"
-           android:fontFamily="@font/rubik"
+            android:fontFamily="@font/rubik"
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/sunrise_time"
                     android:text="08:10:20"
@@ -64,7 +64,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -82,7 +82,7 @@
                     android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/sunrise_azimuth"
                     android:text="08:10:20"
@@ -92,7 +92,7 @@
                     android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -110,7 +110,7 @@
                     android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/sunset_time"
                     android:text="08:10:20"
@@ -120,7 +120,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -138,7 +138,7 @@
                     android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/sunset_azimuth"
                     android:text="08:10:20"
@@ -148,7 +148,7 @@
                     android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -166,7 +166,7 @@
                     android:layout_width="wrap_content"
                     android:fontFamily="@font/rubik_medium"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/dusk_time"
                     android:text="08:10:20"
@@ -176,7 +176,7 @@
                     android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -204,7 +204,7 @@
                     android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
         <TableRow
@@ -221,7 +221,7 @@
                     android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/latitudeTv"
                     android:text="51.232523"
@@ -231,7 +231,7 @@
                     android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
 
@@ -249,7 +249,7 @@
                     android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0" />
+                    android:layout_column="0"/>
             <TextView
                     android:id="@+id/longitudeTv"
                     android:text="8.042355"
@@ -259,7 +259,7 @@
                     android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1" />
+                    android:layout_column="1"/>
 
         </TableRow>
     </TableLayout>

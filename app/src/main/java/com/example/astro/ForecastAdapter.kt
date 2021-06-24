@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
 
-class ForecastAdapter(private val weatherForecast: Root, private val units : String) :
+class ForecastAdapter(private val weatherForecast: Root, private val units: String) :
     RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

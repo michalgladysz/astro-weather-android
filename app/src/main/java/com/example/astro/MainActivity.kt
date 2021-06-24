@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var extraWeatherFragment: ExtraWeatherFragment
     private lateinit var forecastFragment: ForecastFragment
 
-    private var latitude : String = "51"
-    private var longitude : String = "21"
+    private var latitude: String = "51"
+    private var longitude: String = "21"
 
-    private var units : String = "metric"
+    private var units: String = "metric"
 
     private var refreshRate = 10
 
@@ -43,13 +43,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (SharedPrefUtils.getBooleanData(this,"FIRST_RUN")) {
+        if (SharedPrefUtils.getBooleanData(this, "FIRST_RUN")) {
             SharedPrefUtils.saveData(this, "LATITUDE_KEY", "52.2297")
             SharedPrefUtils.saveData(this, "LONGITUDE_KEY", "21.0122")
             SharedPrefUtils.saveData(this, "CITY_NAME", "Warsaw")
             SharedPrefUtils.saveData(this, "REFRESH_KEY", 5)
             SharedPrefUtils.saveData(this, "UNITS", "metric")
-            SharedPrefUtils.saveData(this,"FIRST_RUN", false)
+            SharedPrefUtils.saveData(this, "FIRST_RUN", false)
         }
 
         loadData()
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun updateSettings() {
-        refreshRate = SharedPrefUtils.getIntData(this,"REFRESH_KEY")
+        refreshRate = SharedPrefUtils.getIntData(this, "REFRESH_KEY")
         units = SharedPrefUtils.getStringData(this, "UNITS").toString()
         getWeather()
     }
@@ -113,21 +113,24 @@ class MainActivity : AppCompatActivity() {
     private fun getWeather() {
         loadData()
         val request = ServiceBuilder.buildService(ApiEndpoints::class.java)
-        val call = request.getWeather(latitude, longitude, units,"hourly,minutely,alerts", "ea96da650b548546f840ea1f5a8f13af")
+        val call =
+            request.getWeather(latitude, longitude, units, "hourly,minutely,alerts", "ea96da650b548546f840ea1f5a8f13af")
         call.enqueue(object : Callback<Root> {
             override fun onResponse(call: Call<Root>, response: Response<Root>) {
-                    val gson = Gson()
-                    val jsonString = gson.toJson(response.body())
-                    saveWeatherInfo(jsonString)
-                    Toast.makeText(this@MainActivity, "Data refreshed", Toast.LENGTH_SHORT).show()
+                val gson = Gson()
+                val jsonString = gson.toJson(response.body())
+                saveWeatherInfo(jsonString)
+                Toast.makeText(this@MainActivity, "Data refreshed", Toast.LENGTH_SHORT).show()
             }
+
             override fun onFailure(call: Call<Root>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "No internet connection. Cannot refresh data.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "No internet connection. Cannot refresh data.", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }
 
-    private fun saveWeatherInfo(weatherInfo : String) {
+    private fun saveWeatherInfo(weatherInfo: String) {
         SharedPrefUtils.saveData(this, "WEATHER_INFO", weatherInfo)
     }
 
