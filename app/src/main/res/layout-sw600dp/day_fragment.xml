@@ -13,8 +13,8 @@
         <TextView
                 android:text="SUN"
                 android:textSize="60sp"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:textColor="#ffffff"
+                android:fontFamily="@font/rubik"
+                android:textColor="@color/colorBackground"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,9 +26,9 @@
     <TextClock
             android:text=""
             android:textSize="30sp"
-            android:textColor="@color/colorDayText"
+            android:textColor="@color/colorBackground"
             android:format12Hour="hh:mm:ss a"
-            android:fontFamily="sans-serif-condensed-medium"
+           android:fontFamily="@font/rubik"
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,8 +49,8 @@
             <TextView
                     android:text="Sunrise time"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
-                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/colorBackground"
+                    android:fontFamily="@font/rubik_medium"
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,7 +59,8 @@
                     android:id="@+id/sunrise_time"
                     android:text="08:10:20"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
+                    android:fontFamily="@font/rubik"
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,9 +77,9 @@
             <TextView
                     android:text="Sunrise azimuth"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="0" />
@@ -86,8 +87,9 @@
                     android:id="@+id/sunrise_azimuth"
                     android:text="08:10:20"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
+                    android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1" />
@@ -103,9 +105,9 @@
             <TextView
                     android:text="Sunset time"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="0" />
@@ -113,7 +115,8 @@
                     android:id="@+id/sunset_time"
                     android:text="08:10:20"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
+                    android:fontFamily="@font/rubik"
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -130,9 +133,9 @@
             <TextView
                     android:text="Sunset azimuth"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="0" />
@@ -140,8 +143,9 @@
                     android:id="@+id/sunset_azimuth"
                     android:text="08:10:20"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
+                    android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1" />
@@ -157,18 +161,19 @@
             <TextView
                     android:text="Dusk"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/rubik_medium"
                     android:layout_height="wrap_content"
                     android:layout_column="0" />
             <TextView
                     android:id="@+id/dusk_time"
                     android:text="08:10:20"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
+                    android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1" />
@@ -184,9 +189,9 @@
             <TextView
                     android:text="Twilight"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="0"/>
@@ -194,8 +199,9 @@
                     android:id="@+id/twilight_time"
                     android:text="08:10:20"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
+                    android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1" />
@@ -210,9 +216,9 @@
             <TextView
                     android:text="Latitude"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="0" />
@@ -220,8 +226,9 @@
                     android:id="@+id/latitudeTv"
                     android:text="51.232523"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
+                    android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1" />
@@ -237,9 +244,9 @@
             <TextView
                     android:text="Longitude"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/rubik_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="0" />
@@ -247,8 +254,9 @@
                     android:id="@+id/longitudeTv"
                     android:text="8.042355"
                     android:textSize="20sp"
-                    android:textColor="@color/colorDayText"
+                    android:textColor="@color/colorBackground"
                     android:textAlignment="center"
+                    android:fontFamily="@font/rubik"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1" />

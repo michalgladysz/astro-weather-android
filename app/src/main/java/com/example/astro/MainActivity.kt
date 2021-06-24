@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nightFragment: NightFragment
     private lateinit var mainFragment: MainFragment
     private lateinit var weatherFragment: WeatherFragment
+    private lateinit var extraWeatherFragment: ExtraWeatherFragment
     private lateinit var forecastFragment: ForecastFragment
 
     private var latitude : String = "51"
@@ -41,8 +42,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        loadData()
 
+        if (SharedPrefUtils.getBooleanData(this,"FIRST_RUN")) {
+            SharedPrefUtils.saveData(this, "LATITUDE_KEY", "52.2297")
+            SharedPrefUtils.saveData(this, "LONGITUDE_KEY", "21.0122")
+            SharedPrefUtils.saveData(this, "CITY_NAME", "Warsaw")
+            SharedPrefUtils.saveData(this, "REFRESH_KEY", 5)
+            SharedPrefUtils.saveData(this, "UNITS", "metric")
+            SharedPrefUtils.saveData(this,"FIRST_RUN", false)
+        }
+
+        loadData()
 
         myViewPager2 = findViewById(R.id.pager)
         myAdapter = ViewPagerAdapter(this)
@@ -54,13 +64,15 @@ class MainActivity : AppCompatActivity() {
         myAdapter!!.addFragment(SunFragment())
         myAdapter!!.addFragment(NightFragment())
         myAdapter!!.addFragment(WeatherFragment())
+        myAdapter!!.addFragment(ExtraWeatherFragment())
         myAdapter!!.addFragment(ForecastFragment())
 
         mainFragment = myAdapter?.getFragment(0) as MainFragment
         sunFragment = myAdapter?.getFragment(1) as SunFragment
         nightFragment = myAdapter?.getFragment(2) as NightFragment
         weatherFragment = myAdapter?.getFragment(3) as WeatherFragment
-        forecastFragment = myAdapter?.getFragment(4) as ForecastFragment
+        extraWeatherFragment = myAdapter?.getFragment(4) as ExtraWeatherFragment
+        forecastFragment = myAdapter?.getFragment(5) as ForecastFragment
 
 
         updateSettings()
@@ -110,7 +122,7 @@ class MainActivity : AppCompatActivity() {
                     saveWeatherInfo(jsonString)
             }
             override fun onFailure(call: Call<Root>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "No internet connection. Cannot refresh data.", Toast.LENGTH_SHORT).show()
             }
         })
     }

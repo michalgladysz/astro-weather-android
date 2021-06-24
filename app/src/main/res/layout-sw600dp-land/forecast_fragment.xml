@@ -9,7 +9,7 @@
 
     <TextView
             android:text=""
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:fontFamily="@font/rubik_medium"
             android:textColor="@color/colorBackground"
             android:textAlignment="center"
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="40dp"
-            android:layout_marginHorizontal="100dp"/>
+            android:layout_marginHorizontal="150dp"/>
 
 
 </LinearLayout>

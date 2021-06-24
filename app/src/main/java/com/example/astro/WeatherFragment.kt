@@ -21,6 +21,10 @@ class WeatherFragment : Fragment() {
     private var maxTemperature: TextView? = null
     private var feelsLikeTemperature: TextView? = null
     private var cityName: TextView? = null
+    private var pressure: TextView? = null
+    private var humidity: TextView? = null
+    private var latitude: TextView? = null
+    private var longitude: TextView? = null
 
     private var units : String? = null
 
@@ -51,6 +55,10 @@ class WeatherFragment : Fragment() {
         maxTemperature = view?.findViewById(R.id.max_temperature) as TextView
         feelsLikeTemperature = view?.findViewById(R.id.feels_like_temperature) as TextView
         cityName = view?.findViewById(R.id.city_name) as TextView
+        pressure = view?.findViewById(R.id.pressure) as TextView
+        humidity = view?.findViewById(R.id.humidity) as TextView
+        latitude = view?.findViewById(R.id.latitudeTv) as TextView
+        longitude = view?.findViewById(R.id.longitudeTv) as TextView
     }
 
     private fun updateTextViews(weatherInfo : Root) {
@@ -60,6 +68,8 @@ class WeatherFragment : Fragment() {
         weatherDescription!!.text =  weatherInfo.current.weather[0].description.toUpperCase()
         maxTemperature!!.text = String.format("%d°$units", weatherInfo.daily[0].temp.max.roundToInt())
         minTemperature!!.text = String.format("%d°$units", weatherInfo.daily[0].temp.min.roundToInt())
+        pressure?.text = weatherInfo.current.pressure.toString() + " hPa"
+        humidity?.text =  weatherInfo.current.humidity.toString() + "%"
 
         when (weatherInfo.current.weather[0].icon) {
             "01d" -> weatherDescription!!.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_clear_sun_100,0,0)
@@ -82,6 +92,8 @@ class WeatherFragment : Fragment() {
     private fun loadSharedPreferences() : Root {
         val weatherInfoJson = activity?.let { SharedPrefUtils.getStringData(it,"WEATHER_INFO") }
         cityName?.text = activity?.let { SharedPrefUtils.getStringData(it, "CITY_NAME") + " weather" }
+        latitude?.text = activity?.let { SharedPrefUtils.getStringData(it, "LATITUDE_KEY")}
+        longitude?.text =  activity?.let { SharedPrefUtils.getStringData(it, "LONGITUDE_KEY")}
         units = activity?.let { SharedPrefUtils.getStringData(it, "UNITS") }
         units = if (units == "metric") "C" else "F"
         val gson = Gson()

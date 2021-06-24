@@ -61,11 +61,6 @@ class MainFragment : Fragment() {
 
         spinnerFavCities.adapter = adapter
 
-        latitude.setText("52.2296")
-        longitude.setText("21.0122")
-        cityName.setText("Warsaw")
-        (activity as MainActivity).refreshData()
-
         setButton.setOnClickListener {
             val geocoder = Geocoder(activity, Locale.ENGLISH)
 

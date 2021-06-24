@@ -9,7 +9,7 @@ class SharedPrefUtils {
         private const val PREF_APP = "sharedPreferences"
 
         fun getBooleanData(context: Context, key: String?): Boolean {
-            return context.getSharedPreferences(PREF_APP, Context.MODE_PRIVATE).getBoolean(key, false)
+            return context.getSharedPreferences(PREF_APP, Context.MODE_PRIVATE).getBoolean(key, true)
         }
 
         fun getIntData(context: Context, key: String?): Int {

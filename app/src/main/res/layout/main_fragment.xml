@@ -11,7 +11,7 @@
             android:id="@+id/titleTv"
             android:text="@string/astro_weather"
             android:textSize="50sp"
-            android:fontFamily="sans-serif-condensed-medium"
+            android:fontFamily="@font/rubik"
             android:textColor="#ffffff"
             android:textAlignment="center"
             android:scaleX="0.6"
@@ -26,7 +26,7 @@
         <TableLayout
                 android:id="@+id/table_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="60dp">
 
             <TableRow
@@ -37,7 +37,7 @@
                         android:text="@string/refresh_rate"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
+                        android:fontFamily="@font/rubik"
                         android:textColor="#ffffff"
                         android:textSize="16sp"
                         android:layout_weight="1"/>
@@ -45,6 +45,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/spinner"
+                        android:fontFamily="@font/rubik"
                         android:layout_weight="1"
                         android:textSize="16sp"
                         android:theme="@style/spinnerItemStyle"
@@ -62,7 +63,7 @@
                         android:text="@string/temperature_unit"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
+                        android:fontFamily="@font/rubik"
                         android:textColor="#ffffff"
                         android:textSize="16sp"
                         android:layout_weight="1"/>
@@ -75,6 +76,7 @@
                         android:textColor="@color/colorDay"
                         android:background="@drawable/edittext_bg"
                         android:textSize="14sp"
+                        android:fontFamily="@font/rubik"
                         android:textOff="@string/celsius"
                         android:textOn="@string/fahrenheit"
                         android:textAlignment="textStart"
@@ -91,7 +93,7 @@
                         android:text="@string/coords_desc"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
+                        android:fontFamily="@font/rubik"
                         android:textColor="@color/colorDayText"
                         android:layout_weight="1"
                         android:textSize="14sp"/>
@@ -107,7 +109,7 @@
                     android:text="@string/latitude"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed-medium"
+                    android:fontFamily="@font/rubik"
                     android:textColor="#ffffff"
                     android:layout_weight="1"
                     android:textSize="16sp"/>
@@ -117,6 +119,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal|numberSigned"
                     android:layout_weight="1"
+                    android:fontFamily="@font/rubik"
                     android:background="@drawable/edittext_bg"
                     android:textColor="@color/colorDay"
                     android:textSize="16sp"
@@ -133,7 +136,7 @@
                     android:text="@string/longitude"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed-medium"
+                    android:fontFamily="@font/rubik"
                     android:textColor="#ffffff"
                     android:layout_weight="1"
                     android:textSize="16sp"/>
@@ -144,6 +147,7 @@
                     android:layout_weight="1"
                     android:inputType="numberDecimal|numberSigned"
                     android:background="@drawable/edittext_bg"
+                    android:fontFamily="@font/rubik"
                     android:textColor="@color/colorDay"
                     android:textSize="16sp"
                     android:paddingHorizontal="10dp"
@@ -162,6 +166,7 @@
                         android:layout_width="0dp"
                         android:background="@drawable/edittext_bg"
                         android:textColor="@color/colorDay"
+                        android:fontFamily="@font/rubik"
                         android:textSize="14sp"
                         android:layout_height="30dp"
                         android:layout_weight="1"/>
@@ -176,7 +181,7 @@
                         android:text="@string/city_desc"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
+                        android:fontFamily="@font/rubik"
                         android:textColor="@color/colorDayText"
                         android:layout_weight="1"
                         android:textSize="14sp"/>
@@ -191,7 +196,7 @@
                         android:text="@string/city"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
+                        android:fontFamily="@font/rubik"
                         android:textColor="#ffffff"
                         android:layout_weight="1"
                         android:textSize="16sp"/>
@@ -202,6 +207,7 @@
                         android:inputType="text"
                         android:background="@drawable/edittext_bg"
                         android:textColor="@color/colorDay"
+                        android:fontFamily="@font/rubik"
                         android:textSize="16sp"
                         android:paddingHorizontal="10dp"
                         android:ems="10"
@@ -220,6 +226,7 @@
                         android:layout_width="0dp"
                         android:background="@drawable/edittext_bg"
                         android:textColor="@color/colorDay"
+                        android:fontFamily="@font/rubik"
                         android:textSize="14sp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
@@ -231,6 +238,7 @@
                         android:layout_width="0dp"
                         android:background="@drawable/edittext_bg"
                         android:textColor="@color/colorDay"
+                        android:fontFamily="@font/rubik"
                         android:textSize="14sp"
                         android:layout_height="30dp"
                         android:layout_weight="1" tools:ignore="ButtonStyle"/>
@@ -246,7 +254,7 @@
                         android:text="@string/choose_saved_city"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
+                        android:fontFamily="@font/rubik"
                         android:textColor="@color/colorDayText"
                         android:layout_weight="1"
                         android:textSize="14sp"/>
@@ -261,7 +269,7 @@
                         android:text="@string/saved_cities"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
+                        android:fontFamily="@font/rubik"
                         android:textColor="#ffffff"
                         android:textSize="16sp"
                         android:layout_weight="1"/>
@@ -273,6 +281,7 @@
                         android:layout_weight="1"
                         android:textSize="16sp"
                         android:theme="@style/spinnerItemStyle"
+                        android:fontFamily="@font/rubik"
                         android:background="@drawable/edittext_bg"
                         android:popupBackground="@drawable/edittext_bg"/>
             </TableRow>
@@ -290,6 +299,7 @@
                         android:layout_width="0dp"
                         android:background="@drawable/edittext_bg"
                         android:textColor="@color/colorDay"
+                        android:fontFamily="@font/rubik"
                         android:textSize="14sp"
                         android:layout_height="30dp"
                         android:layout_weight="1"/>
@@ -307,6 +317,7 @@
                         android:layout_width="0dp"
                         android:background="@drawable/edittext_bg"
                         android:textColor="@color/colorBackground"
+                        android:fontFamily="@font/rubik"
                         android:textSize="14sp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"/>
