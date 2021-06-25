@@ -56,7 +56,7 @@ class MainFragment : Fragment() {
         adapter = activity?.let {
             ArrayAdapter(
                 it,
-                android.R.layout.simple_spinner_item,
+                R.layout.spinner_item,
                 favoriteCities.toMutableList()
             )
         }!!

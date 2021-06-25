@@ -61,18 +61,18 @@ class MainActivity : AppCompatActivity() {
         myViewPager2!!.adapter = myAdapter
 
         myAdapter!!.addFragment(MainFragment())
-        myAdapter!!.addFragment(SunFragment())
-        myAdapter!!.addFragment(NightFragment())
         myAdapter!!.addFragment(WeatherFragment())
         myAdapter!!.addFragment(ExtraWeatherFragment())
         myAdapter!!.addFragment(ForecastFragment())
+        myAdapter!!.addFragment(SunFragment())
+        myAdapter!!.addFragment(NightFragment())
 
         mainFragment = myAdapter?.getFragment(0) as MainFragment
-        sunFragment = myAdapter?.getFragment(1) as SunFragment
-        nightFragment = myAdapter?.getFragment(2) as NightFragment
-        weatherFragment = myAdapter?.getFragment(3) as WeatherFragment
-        extraWeatherFragment = myAdapter?.getFragment(4) as ExtraWeatherFragment
-        forecastFragment = myAdapter?.getFragment(5) as ForecastFragment
+        weatherFragment = myAdapter?.getFragment(1) as WeatherFragment
+        extraWeatherFragment = myAdapter?.getFragment(2) as ExtraWeatherFragment
+        forecastFragment = myAdapter?.getFragment(3) as ForecastFragment
+        sunFragment = myAdapter?.getFragment(4) as SunFragment
+        nightFragment = myAdapter?.getFragment(5) as NightFragment
 
 
         updateSettings()

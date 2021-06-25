@@ -1,5 +1,9 @@
 package com.example.astro
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +12,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.astro.model.Root
 import com.google.gson.Gson
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ExtraWeatherFragment : Fragment() {
 
@@ -17,6 +23,7 @@ class ExtraWeatherFragment : Fragment() {
     private var cloudiness: TextView? = null
     private var rainVolume: TextView? = null
     private var visibility: TextView? = null
+    private var outdatedInfo: TextView? = null
 
     private var units: String? = null
 
@@ -35,8 +42,7 @@ class ExtraWeatherFragment : Fragment() {
 
     override fun onResume() {
         initTv()
-        val weatherInfo = loadSharedPreferences()
-        updateTextViews(weatherInfo)
+        updateData()
         super.onResume()
     }
 
@@ -47,6 +53,7 @@ class ExtraWeatherFragment : Fragment() {
         rainVolume = view?.findViewById(R.id.rain_volume) as TextView
         visibility = view?.findViewById(R.id.visibility) as TextView
         cityName = view?.findViewById(R.id.city_name) as TextView
+        outdatedInfo = view?.findViewById(R.id.outdatedInfo) as TextView
     }
 
     private fun updateTextViews(weatherInfo: Root) {
@@ -55,6 +62,12 @@ class ExtraWeatherFragment : Fragment() {
         cloudiness?.text = weatherInfo.current.clouds.toString() + "%"
         rainVolume?.text = weatherInfo.daily[0].rain.toString() + " mm"
         visibility?.text = weatherInfo.current.visibility.toString() + " m"
+
+        val dateString = getLastUpdateDt(weatherInfo)
+
+        if (!isInternetConnected()) {
+            outdatedInfo?.text = "No internet connection, last update: $dateString"
+        } else outdatedInfo?.text = "Updated: $dateString"
     }
 
     private fun updateData() {
@@ -71,4 +84,14 @@ class ExtraWeatherFragment : Fragment() {
         return gson.fromJson(weatherInfoJson, Root::class.java)
     }
 
+    private fun isInternetConnected(): Boolean {
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        return activeNetwork?.isConnected == true
+    }
+
+    private fun getLastUpdateDt(weatherInfo : Root) : String {
+        val formatter = SimpleDateFormat("hh:mm:ss, d/MM/yyyy");
+        return formatter.format(Date(weatherInfo.current.dt * 1000))
+    }
 }

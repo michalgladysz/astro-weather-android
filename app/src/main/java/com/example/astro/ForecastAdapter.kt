@@ -1,5 +1,6 @@
 package com.example.astro
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,10 +20,6 @@ class ForecastAdapter(private val weatherForecast: Root, private val units: Stri
         val description: TextView = view.findViewById(R.id.description)
         val temperature: TextView = view.findViewById(R.id.temperature)
         val image: ImageView = view.findViewById(R.id.image)
-
-        init {
-            // Define click listener for the ViewHolder's View.
-        }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -36,6 +33,8 @@ class ForecastAdapter(private val weatherForecast: Root, private val units: Stri
 
         val formatter = SimpleDateFormat("E, d MMMM");
         val dateString = formatter.format(Date(weatherForecast.daily[position].dt * 1000))
+
+        Log.d("onbind", String.format("%d°$units", weatherForecast.daily[position].temp.day.roundToInt()))
 
         viewHolder.temperature.text = String.format("%d°$units", weatherForecast.daily[position].temp.day.roundToInt())
         viewHolder.textView.text = dateString.toString()

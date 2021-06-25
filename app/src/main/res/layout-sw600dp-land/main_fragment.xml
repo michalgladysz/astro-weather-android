@@ -51,7 +51,7 @@
                         android:layout_weight="1"
                         android:textSize="18sp"
                         android:fontFamily="@font/rubik"
-                        android:theme="@style/spinnerItemStyle"
+                        android:theme="@style/spinnerItemStyleTablet"
                         android:background="@drawable/edittext_bg"
                         android:popupBackground="@drawable/edittext_bg"
                         android:entries="@array/refresh_array"/>
@@ -276,7 +276,7 @@
                         android:fontFamily="@font/rubik"
                         android:layout_weight="1"
                         android:textSize="20sp"
-                        android:theme="@style/spinnerItemStyle"
+                        android:theme="@style/spinnerItemStyleTablet"
                         android:background="@drawable/edittext_bg"
                         android:popupBackground="@drawable/edittext_bg"/>
             </TableRow>

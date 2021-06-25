@@ -10,6 +10,11 @@
 
     <style name="spinnerItemStyle" parent="@android:style/Widget.DropDownItem.Spinner">
         <item name="android:textColor">@color/colorDay</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="spinnerItemStyleTablet" parent="@android:style/Widget.DropDownItem.Spinner">
+        <item name="android:textColor">@color/colorDay</item>
         <item name="android:textSize">18sp</item>
     </style>
 

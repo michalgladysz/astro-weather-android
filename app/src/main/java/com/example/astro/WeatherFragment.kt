@@ -1,6 +1,9 @@
 package com.example.astro
 
+import android.content.Context
 import android.content.res.Configuration
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +14,8 @@ import com.example.astro.model.Root
 import com.google.gson.Gson
 import kotlin.math.roundToInt
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class WeatherFragment : Fragment() {
@@ -25,6 +30,7 @@ class WeatherFragment : Fragment() {
     private var humidity: TextView? = null
     private var latitude: TextView? = null
     private var longitude: TextView? = null
+    private var outdatedInfo: TextView? = null
 
     private var units: String? = null
 
@@ -59,6 +65,7 @@ class WeatherFragment : Fragment() {
         humidity = view?.findViewById(R.id.humidity) as TextView
         latitude = view?.findViewById(R.id.latitudeTv) as TextView
         longitude = view?.findViewById(R.id.longitudeTv) as TextView
+        outdatedInfo = view?.findViewById(R.id.outdatedInfo) as TextView
     }
 
     private fun updateTextViews(weatherInfo: Root) {
@@ -70,6 +77,12 @@ class WeatherFragment : Fragment() {
         minTemperature!!.text = String.format("%d°$units", weatherInfo.daily[0].temp.min.roundToInt())
         pressure?.text = weatherInfo.current.pressure.toString() + " hPa"
         humidity?.text = weatherInfo.current.humidity.toString() + "%"
+
+        val dateString = getLastUpdateDt(weatherInfo)
+
+        if (!isInternetConnected()) {
+            outdatedInfo?.text = "No internet connection, last update: $dateString"
+        } else outdatedInfo?.text = "Updated: $dateString"
 
         if (this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             when (weatherInfo.current.weather[0].icon) {
@@ -125,4 +138,14 @@ class WeatherFragment : Fragment() {
         return gson.fromJson(weatherInfoJson, Root::class.java)
     }
 
+    private fun isInternetConnected(): Boolean {
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        return activeNetwork?.isConnected == true
+    }
+
+    private fun getLastUpdateDt(weatherInfo: Root): String {
+        val formatter = SimpleDateFormat("hh:mm:ss, d/MM/yyyy");
+        return formatter.format(Date(weatherInfo.current.dt * 1000))
+    }
 }
